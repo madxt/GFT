@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Multiplier</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #555;
+            font-size: 18px;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #output {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        #result {
+            font-size: 16px;
+            line-height: 1.5;
+            white-space: pre-wrap; /* Preserve line breaks */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Bobby's Text Multiplier</h2>
+        <div>
+            <label for="text">Enter the text:</label>
+            <input type="text" id="text" placeholder="Enter text...">
+            <br>
+            <label for="count">Enter the count:</label>
+            <input type="number" id="count" placeholder="Enter count...">
+            <br><br>
+            <button onclick="multiplyText()">Multiply Text</button>
+        </div>
+        <br>
+        <div id="output">
+            <p id="result"></p>
+        </div>
+    </div>
+
+    <script>
+        function multiplyText() {
+            var text = document.getElementById("text").value;
+            var count = document.getElementById("count").value;
+
+            // Validate input
+            if (!text.trim()) {
+                alert("Please enter some text.");
+                return;
+            }
+
+            if (count <= 0) {
+                alert("Please enter a count greater than zero.");
+                return;
+            }
+
+            var multipliedText = "";
+            for (var i = 0; i < count; i++) {
+                multipliedText += text + "\n";
+            }
+
+            document.getElementById("result").textContent = multipliedText;
+        }
+    </script>
+</body>
+</html>

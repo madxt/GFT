@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Encryptor / Decryptor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #555;
+            font-size: 18px;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #output {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        #result {
+            font-size: 16px;
+            line-height: 1.5;
+            white-space: pre-wrap; /* Preserve line breaks */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Bobby's Encryptor / Decryptor</h2>
+        <div>
+            <label for="text">Enter the string:</label>
+            <input type="text" id="text" placeholder="Enter string...">
+            <br>
+            <label for="operation">Choose operation:</label>
+            <select id="operation">
+                <option value="encrypt">Encrypt</option>
+                <option value="decrypt">Decrypt</option>
+            </select>
+            <br><br>
+            <button onclick="process()">Process</button>
+        </div>
+        <br>
+        <div id="output">
+            <p id="result"></p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript functions for encryption and decryption
+        function encrypt(text) {
+           
+            var ans = "";
+            for (var i = 0; i < text.length; i++) {
+                var n = text.charCodeAt(i) - 64;
+                ans += n + "-";
+            }
+            return ans.substring(0, ans.length - 1);
+        }
+
+        function decrypt(text) {
+           
+            var x = text.split("-");
+            var ans = "";
+            for (var i = 0; i < x.length; i++) {
+                ans += String.fromCharCode(parseInt(x[i]) + 64);
+            }
+            return ans;
+        }
+
+        function process() {
+            var text = document.getElementById("text").value;
+            var operation = document.getElementById("operation").value;
+
+            // Validate input
+            if (!text.trim()) {
+                alert("Please enter some text.");
+                return;
+            }
+
+            var result = "";
+            if (operation === "encrypt") {
+                result = encrypt(text);
+            } else if (operation === "decrypt") {
+                result = decrypt(text);
+            } else {
+                alert("Invalid operation. Please choose 'encrypt' or 'decrypt'.");
+                return;
+            }
+
+            document.getElementById("result").textContent = result;
+        }
+    </script>
+</body>
+</html> 
